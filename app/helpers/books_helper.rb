@@ -14,4 +14,16 @@ module BooksHelper
       [ CONDITONS_TO_LABELS[name], id]
     end
   end
+
+  def cover_type_label(cover_type)
+    cover_type_id = Book::COVER_TYPES.key(cover_type)
+
+    COVER_TYPES_TO_LABELS[cover_type_id]
+  end
+
+  def condition_label(condition)
+    condition_id = Book::CONDITIONS.key(condition)
+
+    CONDITONS_TO_LABELS[condition_id]
+  end
 end
