@@ -11,3 +11,7 @@ require 'machinist/active_record'
 Book.blueprint do
   # Attributes here
 end
+
+Photo.blueprint do
+  # Attributes here
+end
