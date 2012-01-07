@@ -1,6 +1,6 @@
 class Book < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
-  accepts_nested_attributes_for :photos, :allow_destroy => true
+  accepts_nested_attributes_for :photos, :allow_destroy => false
 
   COVER_TYPES = { soft: 1, stiff: 2 }
   CONDITIONS = { mint: 1, excellent: 2, good: 3, average: 4 }
@@ -31,6 +31,11 @@ class Book < ActiveRecord::Base
 
   def gallery_photos
     photos[1..-1]
+  end
+
+  def build_photos(num)
+    builded = []
+    num.times { builded << photos.build }
   end
 
 end

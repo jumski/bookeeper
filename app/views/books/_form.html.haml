@@ -27,11 +27,18 @@
   .field
     = f.label :condition, 'Stan'
     = f.select :condition, conditions_options
-  %a.add_new_photo + dodaj następne zdjęcie
   .photos
-    = f.fields_for :photos, @book.photos do |b|
-      .field
-        = b.label :image, "Obrazek"
-        = b.file_field :image
+    - unless @book.new_record?
+      %h2 Zdjęcie główne
+      = render :partial => 'photos/photo', :object => @book.main_photo,
+        :locals => {:size => :large}
+      %h3 Pozostałe zdjęcia
+      = render :partial => 'photos/photo', :collection => @book.gallery_photos,
+        :locals => {:size => :small}
+
+    %h3 Nowe zdjęcia
+    %a.add_new_photo + dodaj następne zdjęcie
+    = f.fields_for :photos, @book.build_photos(10) do |builder|
+      = render :partial => 'photos/form', :locals => {:f => builder, :size => :small}
   .actions
     = f.submit 'Zapisz'

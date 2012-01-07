@@ -16,7 +16,9 @@
 
   - @books.each do |book|
     %tr
-      %td= image_tag book.main_photo.image.url(:small)
+      %td
+        - if book.main_photo
+          = image_tag book.main_photo.image.url(:small) if book.main_photo
       %td= book.title
       %td= book.author
       %td= book.publishing_house
@@ -30,4 +32,4 @@
 
 %br
 
-= link_to 'New Book', new_book_path
+= link_to '+ dodaj nową książkę', new_book_path, :class => :add

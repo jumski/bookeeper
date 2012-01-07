@@ -9,8 +9,17 @@
 $red: red;
 $margin: 16px;
 
-.add_new_photo {
-  backgroud-color: lighten($red, 50%);
-  color: $red, 30%;
+.delete, .delete:visited, .delete:hover{
+  color: red;
+  font-weight: bold;
   cursor: pointer;
+}
+
+.add, .add:visited, .add:hover {
+  color: green;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.add:hover {
 }

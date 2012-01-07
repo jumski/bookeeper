@@ -25,7 +25,6 @@ class BooksController < ApplicationController
   # GET /books/new.json
   def new
     @book = Book.new
-    10.times { @book.photos.build }
 
     respond_to do |format|
       format.html # new.html.erb

@@ -76,7 +76,13 @@ class PhotosController < ApplicationController
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to photos_url }
+      format.html do
+        begin
+          redirect_to :back 
+        rescue ActionController::RedirectBackError
+          redirect_to photos_url
+        end
+      end
       format.json { head :ok }
     end
   end
