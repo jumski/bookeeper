@@ -7,6 +7,7 @@ class NewBookView extends Backbone.View
 
   initialize: ->
     @$('.photos .field').hide()
+    @add_new_photo()
 
   add_new_photo: =>
     next_photo = @el.find(".photos .field")[@visible_photos+=1]

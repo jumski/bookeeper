@@ -1,7 +1,5 @@
 class Book < ActiveRecord::Base
-  has_one :photo, :as => :thumbnail, :dependent => :destroy
   has_many :photos, :dependent => :destroy
-
   accepts_nested_attributes_for :photos, :allow_destroy => true
 
   COVER_TYPES = { soft: 1, stiff: 2 }
@@ -25,6 +23,14 @@ class Book < ActiveRecord::Base
     unless CONDITIONS.has_value? condition
       errors.add(:condition, 'must be choosen from list')
     end
+  end
+
+  def main_photo
+    photos.first
+  end
+
+  def gallery_photos
+    photos[1..-1]
   end
 
 end

@@ -23,8 +23,11 @@
   = @book.condition
 
 %h3 Zdjęcia
+= render :partial => 'photos/photo', :object => @book.main_photo,
+    :locals => {:size => :large}
 %p#photos
-  = render :partial => 'photos/gallery', :collection => @book.photos
+  = render :partial => 'photos/photo', :collection => @book.gallery_photos,
+    :locals => {:size => :small}
 
 = link_to 'Edit', edit_book_path(@book)
 \|

@@ -27,9 +27,6 @@
   .field
     = f.label :condition, 'Stan'
     = f.select :condition, conditions_options
-  .field
-    = f.label :thumbnail, "Główne zdjęcie"
-    = f.file_field :thumbnail
   %a.add_new_photo + dodaj następne zdjęcie
   .photos
     = f.fields_for :photos, @book.photos do |b|
