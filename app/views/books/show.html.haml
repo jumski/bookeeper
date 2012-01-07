@@ -22,6 +22,10 @@
   %b Condition:
   = @book.condition
 
+%h3 Zdjęcia
+%p#photos
+  = render :partial => 'photos/gallery', :collection => @book.photos
+
 = link_to 'Edit', edit_book_path(@book)
 \|
 = link_to 'Back', books_path

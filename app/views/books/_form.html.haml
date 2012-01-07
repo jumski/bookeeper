@@ -1,4 +1,4 @@
-= form_for @book do |f|
+= form_for @book, :html => {:multipart => true} do |f|
   -if @book.errors.any?
     #error_explanation
       %h2= "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
@@ -27,5 +27,13 @@
   .field
     = f.label :condition, 'Stan'
     = f.select :condition, conditions_options
+  .field
+    = f.label :thumbnail, "Główne zdjęcie"
+    = f.file_field :thumbnail
+  .photos
+    = f.fields_for :photos, @book.photos do |b|
+      .field
+        = b.label :image, "Obrazek"
+        = b.file_field :image
   .actions
     = f.submit 'Zapisz'

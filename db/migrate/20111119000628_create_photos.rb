@@ -1,11 +1,13 @@
 class CreatePhotos < ActiveRecord::Migration
   def change
     create_table :photos do |t|
-      t.string :image_file_name, :string
-      add_column :users, :avatar_content_type, :string
-      add_column :users, :avatar_file_size,    :integer
-      add_column :users, :avatar_updated_at,   :datetime
+      t.has_attached_file :image
+      t.references :book
       t.timestamps
+    end
+
+    change_table :books do |t|
+      t.references :photo
     end
   end
 end

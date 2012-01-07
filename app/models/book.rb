@@ -1,4 +1,9 @@
 class Book < ActiveRecord::Base
+  has_one :photo, :as => :thumbnail, :dependent => :destroy
+  has_many :photos, :dependent => :destroy
+
+  accepts_nested_attributes_for :photos, :allow_destroy => true
+
   COVER_TYPES = { soft: 1, stiff: 2 }
   CONDITIONS = { mint: 1, excellent: 2, good: 3, average: 4 }
 
