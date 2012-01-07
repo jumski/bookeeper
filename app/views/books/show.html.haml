@@ -17,18 +17,20 @@
   = @book.number_of_pages
 %p
   %b Cover type:
-  = @book.cover_type
+  = cover_type_label(@book.cover_type)
 %p
   %b Condition:
-  = @book.condition
+  = condition_label(@book.condition)
 
 %h3 Zdjęcia
-= render :partial => 'photos/photo', :object => @book.main_photo,
-    :locals => {:size => :large}
-%p#photos
-  = render :partial => 'photos/photo', :collection => @book.gallery_photos,
-    :locals => {:size => :small}
+= render :partial => 'photos/photo',
+    :object => @book.main_photo,
+    :locals => {:size => :large} if @book.main_photo
+%p.photos
+  = render :partial => 'photos/photo',
+      :collection => @book.gallery_photos,
+      :locals => {:size => :small}
 
-= link_to 'Edit', edit_book_path(@book)
+= link_to 'Edytuj', edit_book_path(@book)
 \|
-= link_to 'Back', books_path
+= link_to 'Wróć', books_path
