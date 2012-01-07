@@ -27,9 +27,6 @@ end
 
 gem 'jquery-rails'
 
-gem 'rspec', :groups => [:test, :development]
-gem 'rspec-rails', :groups => [:test, :development]
-gem 'machinist', '>= 2.0.0.beta2', :groups => [:test, :development]
 
 gem 'active_reload', :groups => [:test, :development]
 
@@ -53,4 +50,7 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'machinist'
 end
