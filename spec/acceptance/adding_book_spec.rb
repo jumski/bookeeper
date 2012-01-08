@@ -24,5 +24,6 @@ feature "Book adding" do
 
     page.should_not have_content('Zapisz')
     page.should have_content "Edytuj"
+    page.should have_content "Wróć"
   end
 end
