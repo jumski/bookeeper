@@ -38,4 +38,8 @@ class Book < ActiveRecord::Base
     num.times { builded << photos.build }
   end
 
+  def to_s
+    "\"#{title}\" (#{author})"
+  end
+
 end

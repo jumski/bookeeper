@@ -1,35 +1,33 @@
 %p#notice= notice
 
+%h2= @book
+-# %h3= @book.author
 %p
-  %b Title:
-  = @book.title
-%p
-  %b Author:
-  = @book.author
-%p
-  %b Publishing house:
+  %b Wydawnictwo:
   = @book.publishing_house
 %p
-  %b Year of publication:
+  %b Rok wydania:
   = @book.year_of_publication
 %p
-  %b Number of pages:
+  %b Liczba stron:
   = @book.number_of_pages
 %p
-  %b Cover type:
+  %b Typ okładki:
   = cover_type_label(@book.cover_type)
 %p
-  %b Condition:
+  %b Stan:
   = condition_label(@book.condition)
 
-%h3 Zdjęcia
-= render :partial => 'photos/photo',
-    :object => @book.main_photo,
-    :locals => {:size => :large} if @book.main_photo
-%p.photos
+- if @book.main_photo
+  %h3 Zdjęcia
   = render :partial => 'photos/photo',
-      :collection => @book.gallery_photos,
-      :locals => {:size => :small}
+      :object => @book.main_photo,
+      :locals => {:size => :large}
+- if @book.gallery_photos
+  %p.photos
+    = render :partial => 'photos/photo',
+        :collection => @book.gallery_photos,
+        :locals => {:size => :small}
 
 = link_to 'Edytuj', edit_book_path(@book)
 \|
