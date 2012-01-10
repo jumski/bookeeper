@@ -1,0 +1,21 @@
+.field
+  = f.label :title, 'Tytuł'
+  = f.text_field :title
+.field
+  = f.label :author, 'Autor'
+  = f.text_field :author
+.field
+  = f.label :publishing_house, 'Wydawnictwo'
+  = f.text_field :publishing_house
+.field
+  = f.label :year_of_publication, 'Rok wydania'
+  = f.select :year_of_publication, options_for_select((1700..Date.today.year).to_a.reverse.collect{|year| [year, year]})
+.field
+  = f.label :number_of_pages, 'Liczba stron'
+  = f.number_field :number_of_pages
+.field
+  = f.label :cover_type, 'Rodzaj okładki'
+  = f.select :cover_type, cover_types_options
+.field
+  = f.label :condition, 'Stan'
+  = f.select :condition, conditions_options

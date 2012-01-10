@@ -42,6 +42,7 @@ group :test do
 
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'launchy'
 
   gem 'spork'
   gem 'database_cleaner'
