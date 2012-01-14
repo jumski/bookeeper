@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.3'
+# gem 'sorcery'
 
 gem 'therubyracer'
 gem 'sqlite3'
@@ -21,19 +22,24 @@ end
 group :development do
   gem 'pry'
   gem 'awesome_print'
+  gem 'rdoc-tags'
+  gem 'libnotify'
 end
 
 group :test, :development do
   gem 'rspec-rails'
 
-  # gem 'rb-inotify'
-  # gem 'libnotify'
   gem 'guard-coffeescript'
   gem 'guard-spork'
   gem 'guard-rspec'
   gem 'guard-bundler'
+  gem 'guard-rails'
+  gem 'guard-shell'
 
   gem 'active_reload'
+
+  gem 'machinist', '2.0.0'
+  gem 'faker'
 end
 
 group :test do
@@ -42,11 +48,10 @@ group :test do
 
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'launchy'
 
-  gem 'spork'
+  gem 'spork', '0.9.0.rc9'
   gem 'database_cleaner'
 
-  gem 'machinist', '>= 2.0.0.beta2'
-  gem 'faker'
+  gem 'launchy'
+  gem 'mocha'
 end

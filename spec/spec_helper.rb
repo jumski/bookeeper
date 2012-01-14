@@ -11,28 +11,26 @@ Spork.prefork do
   require 'rspec/rails'
   # require 'shoulda'
   require 'database_cleaner'
-  # require 'accept_values_for'
   require 'rails/test_help'
   require 'capybara/rspec'
-  
-  # Capybara.register_driver :selenium_chrome do |app|
-  #   Capybara::Selenium::Driver.new(app, :browser => :chrome)
-  # end
-  # Capybara.default_driver = :selenium_chrome
-  # Capybara.javascript_driver = :selenium_chrome
-  # Capybara.default_selector = :css
+  require 'pry'
+  require 'machinist/active_record'
+  require 'faker'
+
+  Capybara.register_driver :selenium_chrome do |app|
+    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  end
   Capybara.default_driver = :rack_test
   Capybara.javascript_driver = :webkit
+  # Capybara.javascript_driver = :selenium_chrome
   Capybara.default_selector = :css
 
-  DatabaseCleaner.strategy = :transaction
-
   RSpec.configure do |config|
-    # config.mock_with :mocha
-    config.use_transactional_fixtures = false
+    config.mock_with :mocha
+    config.use_transactional_fixtures = true
 
     config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation, { :except => %w(cities) }
+      DatabaseCleaner.strategy = :truncation, { :except => %w(boxes) }
     end
 
     config.before(:each) { DatabaseCleaner.start }
@@ -44,12 +42,8 @@ Spork.each_run do
   load "#{Rails.root}/config/routes.rb"
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 
-  Dir.glob(File.join(Rails.root, '/spec/support/**/*.rb')).each do |file|
-    require file
+  Dir[File.join(Rails.root, '/spec/support/**/*.rb')].each do |file|
+    load file
   end
-
-  load "#{Rails.root}/spec/support/blueprints.rb"
-
-  Machinist.reset_before_test
 end
 
